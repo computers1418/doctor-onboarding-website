@@ -8,6 +8,9 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
@@ -53,7 +56,7 @@ class Header extends StatelessWidget {
                       child: Row(
                         children: ["1", "2", "3", "4"].map((e) =>
                           Container(
-                            height: 32,
+                            height: height<700 ? 24 : 32,
                             width: 38,
                             margin: const EdgeInsets.only(left: 8),
                             alignment: Alignment.center,
@@ -76,7 +79,7 @@ class Header extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          height: 34,
+                          height: height<700 ? 24 : 34,
                           width: 80,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(

@@ -1,6 +1,9 @@
 import 'package:doctor_app/pages/create/account_create_viewmodel.dart';
 import 'package:flutter/material.dart';
 
+import '../../../responsive/size_responsive.dart';
+import '../../../responsive/text_responsive.dart';
+
 class ExpertiseTab extends StatelessWidget {
   final AccountCreateViewModel viewModel;
   ExpertiseTab({super.key, required this.viewModel});
@@ -39,6 +42,7 @@ class ExpertiseTab extends StatelessWidget {
     _achievementsFocusNode.addListener(() {
       achievementsFocusNotifier.value = _achievementsFocusNode.hasFocus;
     });
+    var height = MediaQuery.of(context).size.height;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -50,21 +54,28 @@ class ExpertiseTab extends StatelessWidget {
       child: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 14),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: ValueListenableBuilder<bool>(
               valueListenable: aboutFocusNotifier,
               builder: (context, hasFocus, child) {
-                return TextField(
-                  focusNode: _aboutFocusNode,
-                  onChanged: (value) {
-                    aboutFocusNotifier.value = true;
-                  },
-                  onTap: () {
-                    aboutFocusNotifier.value = true;
-                  },
-                  decoration: const InputDecoration(
-                    fillColor: Colors.white,
-                    hintText: "About",
+                return SizedBox(
+                  height: 60,
+                  child: TextField(
+                    focusNode: _aboutFocusNode,
+                    onChanged: (value) {
+                      aboutFocusNotifier.value = true;
+                    },
+                    onTap: () {
+                      aboutFocusNotifier.value = true;
+                    },
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      hintText: "About",
+                      hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                    ),
                   ),
                 );
               },
@@ -91,24 +102,38 @@ class ExpertiseTab extends StatelessWidget {
             },
           ),
          Padding(
-            padding: const EdgeInsets.only(bottom: 14),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                  focusNode: _educationFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Education"
+                  child: SizedBox(
+                  height: 60,
+                    child: TextField(
+                    focusNode: _educationFocusNode,
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Education",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                      ),
                     ),
                   )),
                 const SizedBox(width: 8,),
                 Expanded(
-                  child: TextField(
-                  focusNode: _specializationFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Specialization"
+                  child: SizedBox(
+                  height: 60,
+                    child: TextField(
+                    focusNode: _specializationFocusNode,
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Specialization",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                      ),
                     ),
                   ))
               ],
@@ -157,12 +182,19 @@ class ExpertiseTab extends StatelessWidget {
             },
           ),
            Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: TextField(
-                  focusNode: _experienceFocusNode,
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
-                hintText: "Experience"
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
+            child: SizedBox(
+                  height: 60,
+              child: TextField(
+                    focusNode: _experienceFocusNode,
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  hintText: "Experience",
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                ),
               ),
             )),
             ValueListenableBuilder<bool>(
@@ -187,12 +219,19 @@ class ExpertiseTab extends StatelessWidget {
             },
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: TextField(
-                  focusNode: _membershipFocusNode,
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
-                hintText: "Membership"
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
+            child: SizedBox(
+                  height: 60,
+              child: TextField(
+                    focusNode: _membershipFocusNode,
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  hintText: "Membership",
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                ),
               ),
             )),
             ValueListenableBuilder<bool>(
@@ -217,12 +256,19 @@ class ExpertiseTab extends StatelessWidget {
             },
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: TextField(
-                  focusNode: _achievementsFocusNode,
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
-                hintText: "Achievements"
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
+            child: SizedBox(
+                  height: 60,
+              child: TextField(
+                    focusNode: _achievementsFocusNode,
+                decoration:  InputDecoration(
+                  fillColor: Colors.white,
+                  hintText: "Achievements",
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                ),
               ),
             )),
             ValueListenableBuilder<bool>(
@@ -253,16 +299,17 @@ class ExpertiseTab extends StatelessWidget {
               children: [
                 Expanded(
                   child: SizedBox(
-                    height: 45,
-                    child: ElevatedButton(onPressed: (){}, child: const Text("SAVE"))),
+                    height: SizeResponsive.get(context, 45),
+                    child: ElevatedButton(onPressed: (){}, child: Text("SAVE", style: TextStyle(fontSize: TextResponsive.get(context, 18))
+                    ))),
                 ),
                 const SizedBox(width: 10,),
                 Expanded(
                   child: SizedBox(
-                    height: 45,
+                    height: SizeResponsive.get(context, 45),
                     child: ElevatedButton(onPressed: (){
                       viewModel.controller.animateToPage(2, duration: const Duration(milliseconds: 500), curve: Curves.linear);
-                    }, child: const Text("NEXT"))),
+                    }, child: Text("NEXT", style: TextStyle(fontSize: TextResponsive.get(context, 18))))),
                 )
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:doctor_app/pages/create/account_create_viewmodel.dart';
 import 'package:doctor_app/pages/create/components/header.dart';
 import 'package:doctor_app/pages/create/tabs/tab_bar_widget.dart';
+import 'package:doctor_app/responsive/size_responsive.dart';
 import 'package:doctor_app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,6 @@ class _AccountCreateViewState extends State<AccountCreateView> {
     //   statusBarIconBrightness: Brightness.dark,
     // ));
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: PopScope(
@@ -50,15 +50,15 @@ class _AccountCreateViewState extends State<AccountCreateView> {
                 AppBar(
                   backgroundColor: Colors.transparent,
                   automaticallyImplyLeading: false,
-                  toolbarHeight: 70,
+                  toolbarHeight: height<650 ? SizeResponsive.get(context, 60) : SizeResponsive.get(context, 70),
                   title: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
                         child: Container(
-                          width: 50,
-                          height: 45,
+                          width: SizeResponsive.get(context, 50),
+                          height: SizeResponsive.get(context, 45),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
                             color: ColorsConst.secondaryLight
@@ -66,13 +66,13 @@ class _AccountCreateViewState extends State<AccountCreateView> {
                           child: IconButton(
                             onPressed: (){
                               Navigator.pushNamedAndRemoveUntil(context, Routes.login, (route) => false);
-                            }, icon: const Icon(Icons.arrow_back, color: Colors.white,))
+                            }, icon: Icon(Icons.arrow_back, color: Colors.white, size: SizeResponsive.get(context, 20),))
                         ),
                       ),
-                      const Expanded(
+                      Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 12),
-                          child: Toast(message: "Save your progress to pick up right where you left off when you return.",)),
+                          padding: EdgeInsets.only(top: height<650 ?  6 : 12),
+                          child: const Toast(message: "Save your progress to pick up right where you left off when you return.",)),
                       )
                     ],
                   ),

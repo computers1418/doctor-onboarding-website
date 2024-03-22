@@ -2,6 +2,10 @@ import 'package:doctor_app/constants/colors_const.dart';
 import 'package:doctor_app/pages/create/account_create_viewmodel.dart';
 import 'package:doctor_app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import '../../../responsive/size_responsive.dart';
+import '../../../responsive/text_responsive.dart';
 
 class AddressTab extends StatelessWidget {
   final AccountCreateViewModel viewModel;
@@ -47,6 +51,8 @@ class AddressTab extends StatelessWidget {
       countryFocusNotifier.value = _countryFocusNode.hasFocus;
     });
 
+
+    var height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
@@ -57,21 +63,32 @@ class AddressTab extends StatelessWidget {
       child: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: ValueListenableBuilder<bool>(
               valueListenable: addressLine1FocusNotifier,
               builder: (context, hasFocus, child) {
-                return TextField(
-                  focusNode: _addressLine1FocusNode,
-                  onChanged: (value) {
-                    addressLine1FocusNotifier.value = true;
-                  },
-                  onTap: () {
-                    addressLine1FocusNotifier.value = true;
-                  },
-                  decoration: const InputDecoration(
-                    fillColor: Colors.white,
-                    hintText: "Address Line 1*",
+                return SizedBox(
+                  height: 60,
+                  child: TextField(
+                    focusNode: _addressLine1FocusNode,
+                    onChanged: (value) {
+                      addressLine1FocusNotifier.value = true;
+                    },
+                    onTap: () {
+                      addressLine1FocusNotifier.value = true;
+                    },
+                    style: TextStyle(
+                          height: 1,
+                          fontSize: TextResponsive.get(context, 14),
+                        ),
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      hintText: "Address Line 1*",
+                      hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                            fontSize: TextResponsive.get(context, 14),
+                            height: 1
+                          ),
+                    ),
                   ),
                 );
               },
@@ -99,24 +116,46 @@ class AddressTab extends StatelessWidget {
             },
           ),
          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                  focusNode: _addressLine2FocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Address Line 2*"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                    focusNode: _addressLine2FocusNode,
+                    style: TextStyle(
+                          height: 1,
+                          fontSize: TextResponsive.get(context, 14),
+                        ),
+                      decoration:  InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Address Line 2*",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                            fontSize: TextResponsive.get(context, 14),
+                            height: 1
+                          ),
+                      ),
                     ),
                   )),
                 const SizedBox(width: 8,),
                 Expanded(
-                  child: TextField(
-                  focusNode: _addressLine3FocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Address Line 3"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                    focusNode: _addressLine3FocusNode,
+                    style: TextStyle(
+                          height: 1,
+                          fontSize: TextResponsive.get(context, 14),
+                        ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Address Line 3",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                            fontSize: TextResponsive.get(context, 14),
+                            height: 1
+                          ),
+                      ),
                     ),
                   ))
               ],
@@ -165,26 +204,48 @@ class AddressTab extends StatelessWidget {
             },
           ),
            Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
              child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                        focusNode: _cityFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "City *"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                          focusNode: _cityFocusNode,
+                          style: TextStyle(
+                          height: 1,
+                          fontSize: TextResponsive.get(context, 14),
+                        ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "City *",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                            fontSize: TextResponsive.get(context, 14),
+                            height: 1
+                          ),
+                      ),
                     ),
                   )),
-
+             
                 const SizedBox(width: 10,),
              
                 Expanded(
-                  child: TextField(
-                    focusNode: _zipCodeFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Zip code*"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                      focusNode: _zipCodeFocusNode,
+                      style: TextStyle(
+                          height: 1,
+                          fontSize: TextResponsive.get(context, 14),
+                        ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Zip code*",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                            fontSize: TextResponsive.get(context, 14),
+                            height: 1
+                          ),
+                      ),
                     ),
                   )),
               ],
@@ -233,25 +294,47 @@ class AddressTab extends StatelessWidget {
             },
           ),
            Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: Row(
               children: [
                 Expanded(
                   
-                  child: TextField(
-                    focusNode: _stateFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "State *"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                      focusNode: _stateFocusNode,
+                      style: TextStyle(
+                          height: 1,
+                          fontSize: TextResponsive.get(context, 14),
+                        ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "State *",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                            fontSize: TextResponsive.get(context, 14),
+                            height: 1
+                          ),
+                      ),
                     ),
                   )),
                 const SizedBox(width: 8,),
                 Expanded(
-                  child: TextField(
-                    focusNode: _countryFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Country*"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                      focusNode: _countryFocusNode,
+                      style: TextStyle(
+                          height: 1,
+                          fontSize: TextResponsive.get(context, 14),
+                        ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Country*",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                            fontSize: TextResponsive.get(context, 14),
+                            height: 1
+                          ),
+                      ),
                     ),
                   ))
               ],
@@ -300,20 +383,20 @@ class AddressTab extends StatelessWidget {
             },
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
+            padding: const EdgeInsets.fromLTRB(2, 4, 2,0),
             child: Row(
               children: [
                 Expanded(
                   child: Container(
-                    height: 100,
+                    height: height>700 ? SizeResponsive.get(context, 100) :70,
                       alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: const Color(0xFF20AFA9),
                     borderRadius: BorderRadius.circular(30)
                   ),
-                    child: const Text("Upload Location Coordinates", textAlign: TextAlign.center, style: TextStyle(
+                    child: Text("Upload Location Coordinates", textAlign: TextAlign.center, style: TextStyle(
                         fontFamily: "Aloevera",
-                        fontSize: 12,
+                        fontSize: TextResponsive.get(context, 12),
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       )),
@@ -324,31 +407,31 @@ class AddressTab extends StatelessWidget {
                   children: [
                     Container(
                       alignment: Alignment.center,
-                      height: 44,
+                      height: height>700 ? SizeResponsive.get(context, 44) :29,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: const Color(0xFF20AFA9),
                         borderRadius: BorderRadius.circular(30)
                       ),
-                      child: const Text("Upload ID Proof", textAlign: TextAlign.center, style: TextStyle(
+                      child: Text("Upload ID Proof", textAlign: TextAlign.center, style: TextStyle(
                         fontFamily: "Aloevera",
-                        fontSize: 12,
+                        fontSize: TextResponsive.get(context, 12),
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       )),
                     ),
                     const SizedBox(height: 12,),
                     Container(
-                      height: 44,
+                      height: height>700 ? SizeResponsive.get(context, 44) :29,
                       alignment: Alignment.center,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: const Color(0xFF20AFA9),
                         borderRadius: BorderRadius.circular(30)
                       ),
-                      child: const Text("Upload Doctor License", textAlign: TextAlign.center,style: TextStyle(
+                      child: Text("Upload Doctor License", textAlign: TextAlign.center,style: TextStyle(
                         fontFamily: "Aloevera",
-                        fontSize: 12,
+                        fontSize: TextResponsive.get(context, 12),
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       )),
@@ -359,51 +442,53 @@ class AddressTab extends StatelessWidget {
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.fromLTRB(4, 4, 4, 0),
+           Padding(
+            padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
             child: Text("Documents must be PDF, DOCX, JPEG or PNG", style: TextStyle(
               fontFamily: "Aloevera",
-              fontSize: 12,
+              fontSize: TextResponsive.get(context, 12),
               fontWeight: FontWeight.w500,
               color: ColorsConst.primary,
             )),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4),
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(top: 4, right: 4),
                     child: Icon(Icons.circle, color: ColorsConst.primary, size: 8,)),
                   Expanded(
                     child: Text("I agree to the terms and condition and the privacy policy.", style: TextStyle(
                       fontFamily: "Aloevera",
-                      fontSize: 12,
+                      fontSize: TextResponsive.get(context, 12),
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF363636),
+                      color: const Color(0xFF363636),
                     )),
                   ),
               ],
             ),
           ),
-          const SizedBox(height: 10,),
+          Visibility(
+            visible: height>700,
+            child: const SizedBox(height: 10,)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Row(
               children: [
                 Expanded(
                   child: SizedBox(
-                    height: 45,
-                    child: ElevatedButton(onPressed: (){}, child: const Text("SAVE"))),
+                    height: SizeResponsive.get(context, 45),
+                    child: ElevatedButton(onPressed: (){}, child: Text("SAVE", style: TextStyle(fontSize: TextResponsive.get(context, 18))))),
                 ),
                 const SizedBox(width: 10,),
                 Expanded(
                   child: SizedBox(
-                    height: 45,
+                    height: SizeResponsive.get(context, 45),
                     child: ElevatedButton(onPressed: (){
                       Navigator.pushNamedAndRemoveUntil(context, Routes.authComplete, (route) => false);
-                    }, child: const Text("NEXT"))),
+                    }, child: Text("NEXT", style: TextStyle(fontSize: TextResponsive.get(context, 18))))),
                 )
               ],
             ),

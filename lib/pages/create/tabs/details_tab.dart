@@ -1,5 +1,8 @@
 import 'package:doctor_app/pages/create/account_create_viewmodel.dart';
+import 'package:doctor_app/responsive/size_responsive.dart';
 import 'package:flutter/material.dart';
+
+import '../../../responsive/text_responsive.dart';
 
 class DetailsTab extends StatelessWidget {
   final AccountCreateViewModel viewModel;
@@ -45,6 +48,7 @@ class DetailsTab extends StatelessWidget {
       specFocusNotifier.value = _specFocusNode.hasFocus;
     });
 
+    var height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
@@ -55,21 +59,32 @@ class DetailsTab extends StatelessWidget {
       child: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 14),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: ValueListenableBuilder<bool>(
               valueListenable: emailFocusNotifier,
               builder: (context, hasFocus, child) {
-                return TextField(
-                  focusNode: _emailFocusNode,
-                  onChanged: (value) {
-                    emailFocusNotifier.value = true;
-                  },
-                  onTap: () {
-                    emailFocusNotifier.value = true;
-                  },
-                  decoration: const InputDecoration(
-                    fillColor: Colors.white,
-                    hintText: "Email*",
+                return SizedBox(
+                  height: 60,
+                  child: TextField(
+                    focusNode: _emailFocusNode,
+                    onChanged: (value) {
+                      emailFocusNotifier.value = true;
+                    },
+                    style: TextStyle(
+                      height: 1,
+                      fontSize: TextResponsive.get(context, 14),
+                    ),
+                    onTap: () {
+                      emailFocusNotifier.value = true;
+                    },
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      hintText: "Email*",
+                      hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                        fontSize: TextResponsive.get(context, 14),
+                        height: 1
+                      ),
+                    ),
                   ),
                 );
               },
@@ -99,24 +114,46 @@ class DetailsTab extends StatelessWidget {
             },
           ),
          Padding(
-            padding: const EdgeInsets.only(bottom: 14),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                  focusNode: _phone1FocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Phone Number*"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                    focusNode: _phone1FocusNode,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: TextResponsive.get(context, 14),
+                      ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Phone Number*",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                      ),
                     ),
                   )),
                 const SizedBox(width: 8,),
                 Expanded(
-                  child: TextField(
-                  focusNode: _phone2FocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "PhoneNumber2"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                    focusNode: _phone2FocusNode,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: TextResponsive.get(context, 14),
+                      ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "PhoneNumber2",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                      ),
                     ),
                   ))
               ],
@@ -165,12 +202,23 @@ class DetailsTab extends StatelessWidget {
             },
           ),
            Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: TextField(
-                  focusNode: _wappFocusNode,
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
-                hintText: "WhatsApp Number*"
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
+            child: SizedBox(
+                    height: 60,
+              child: TextField(
+                    focusNode: _wappFocusNode,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: TextResponsive.get(context, 14),
+                      ),
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  hintText: "WhatsApp Number*",
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                  fontSize: TextResponsive.get(context, 14),
+                  height: 1
+                ),
+                ),
               ),
             )),
             ValueListenableBuilder<bool>(
@@ -195,12 +243,23 @@ class DetailsTab extends StatelessWidget {
             },
           ),
            Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: TextField(
-              focusNode: _expFocusNode,
-              decoration: const InputDecoration(
-                fillColor: Colors.white,
-                hintText: "Experience*"
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
+            child: SizedBox(
+                    height: 60,
+              child: TextField(
+                focusNode: _expFocusNode,
+                                    style: TextStyle(
+                        height: 1,
+                        fontSize: TextResponsive.get(context, 14),
+                      ),
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  hintText: "Experience*",
+                  hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                    fontSize: TextResponsive.get(context, 14),
+                    height: 1
+                  ),
+                ),
               ),
             )),
             ValueListenableBuilder<bool>(
@@ -225,25 +284,47 @@ class DetailsTab extends StatelessWidget {
             },
           ),
            Padding(
-            padding: const EdgeInsets.only(bottom: 14),
+            padding: EdgeInsets.only(bottom: height>700? 14 : 0),
             child: Row(
               children: [
                 Expanded(
                   
-                  child: TextField(
-                    focusNode: _degFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Degree*"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                      focusNode: _degFocusNode,
+                                          style: TextStyle(
+                        height: 1,
+                        fontSize: TextResponsive.get(context, 14),
+                      ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Degree*",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                      ),
                     ),
                   )),
                 const SizedBox(width: 8,),
                 Expanded(
-                  child: TextField(
-                    focusNode: _specFocusNode,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: "Specialization*"
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                      focusNode: _specFocusNode,
+                                          style: TextStyle(
+                        height: 1,
+                        fontSize: TextResponsive.get(context, 14),
+                      ),
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: "Specialization*",
+                        hintStyle: Theme.of(context).inputDecorationTheme.hintStyle!.copyWith(
+                          fontSize: TextResponsive.get(context, 14),
+                          height: 1
+                        ),
+                      ),
                     ),
                   ))
               ],
@@ -275,7 +356,7 @@ class DetailsTab extends StatelessWidget {
             builder: (context, hasFocus, child) {
               if (hasFocus) {
                 return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                  padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                   child: Text(
                     'Specialization will appear in the app exactly how you write here.\nYou can write like Dental Surgeon, Dental Specialist, Senior Dental Consultant etc.\nDont worry about the mistakes you make , it can be edited later wheN you see in the app.',
                     style: TextStyle(
@@ -298,18 +379,18 @@ class DetailsTab extends StatelessWidget {
               children: [
                 Expanded(
                   child: SizedBox(
-                    height: 45,
+                    height: SizeResponsive.get(context, 45),
                     child: ElevatedButton(onPressed: (){
-                      
-                    }, child: const Text("SAVE"))),
+                    }, child: Text("SAVE", style: TextStyle(fontSize: TextResponsive.get(context, 18))
+                    ))),
                 ),
                 const SizedBox(width: 10,),
                 Expanded(
                   child: SizedBox(
-                    height: 45,
+                    height: SizeResponsive.get(context, 45),
                     child: ElevatedButton(onPressed: (){
                       viewModel.controller.animateToPage(1, duration: const Duration(milliseconds: 500), curve: Curves.linear);
-                    }, child: const Text("NEXT"))),
+                    }, child: Text("NEXT", style: TextStyle(fontSize: TextResponsive.get(context, 18))))),
                 )
               ],
             ),
