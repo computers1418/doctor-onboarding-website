@@ -1,3 +1,4 @@
+import 'package:doctor_app/responsive/text_responsive.dart';
 import 'package:flutter/material.dart';
 
 class ResendTimer extends StatefulWidget {
@@ -9,10 +10,10 @@ class ResendTimer extends StatefulWidget {
 
 class _ResendTimerState extends State<ResendTimer> with TickerProviderStateMixin{
 
-
-
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+
     return Column(
       children: [
         TweenAnimationBuilder<Duration>(
@@ -28,10 +29,10 @@ class _ResendTimerState extends State<ResendTimer> with TickerProviderStateMixin
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text('${seconds<10 ? '0$seconds': seconds}',
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: "Aloevera",
-                            fontSize: 16,
-                            color: Color(0xFF363636),
+                            fontSize: TextResponsive.get(context, 16),
+                            color: const Color(0xFF363636),
                             fontWeight: FontWeight.w600
                           ))),
                 Container(
@@ -59,14 +60,14 @@ class _ResendTimerState extends State<ResendTimer> with TickerProviderStateMixin
               ],
             );
         }),
-        const Padding(
-          padding: EdgeInsets.only(top: 4, bottom: 30),
+        Padding(
+          padding: EdgeInsets.only(top: 4, bottom: height<650 ? 8: 30),
           child: Align(
             alignment: Alignment.centerRight,
             child: Text("Resend", style: TextStyle(
               fontFamily: "Aloevera",
-              fontSize: 16,
-              color: Color(0xFF363636),
+              fontSize: TextResponsive.get(context, 16),
+              color: const Color(0xFF363636),
               fontWeight: FontWeight.w500
             ),),
           ),

@@ -9,6 +9,8 @@ class TitleImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -30,7 +32,7 @@ class TitleImage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: SizedBox(
-                            width: 160, height: 160,
+                            width: height<650 ? 110 :160, height: height<650 ? 110 :160,
                             child: Image.asset("res/images/3d-connect.png"),
                           ),
                         ),
@@ -38,8 +40,7 @@ class TitleImage extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerRight,
                         child: SizedBox(
-                          width: 160,
-                          height: 160,
+                          width: height<650 ? 110 :160, height: height<650 ? 110 :160,
                           child: Transform.rotate(
                             angle: -pi/2,
                             child: Image.asset("res/images/3d-otp.png"),
@@ -49,7 +50,7 @@ class TitleImage extends StatelessWidget {
                       Align(
                         alignment: Alignment.topCenter,
                         child: SizedBox(
-                          width: 100, height: 100,
+                          width: height<650 ? 70 :100, height: height<650 ? 70 :100,
                           child: Transform.rotate(
                             angle: pi,
                             child: Image.asset("res/images/3d-success.png")),

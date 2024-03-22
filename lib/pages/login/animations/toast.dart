@@ -1,4 +1,5 @@
 import 'package:doctor_app/constants/colors_const.dart';
+import 'package:doctor_app/responsive/text_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -91,7 +92,7 @@ class _ToastState extends State<Toast> with SingleTickerProviderStateMixin {
                     widget.message,
                     maxLines: 2,
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: TextResponsive.get(context, 12),
                       color: _containerColor, // Adjust the text color as needed
                       fontFamily: "Aloevera",
                       fontWeight: FontWeight.w600,

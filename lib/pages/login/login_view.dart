@@ -8,6 +8,7 @@ import 'package:doctor_app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors_const.dart';
+import '../../responsive/text_responsive.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -45,6 +46,8 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin{
     //   statusBarColor: Colors.white.withOpacity(0.6),
     //   statusBarIconBrightness: Brightness.dark,
     // ));
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
 
     return PopScope(
       canPop: false,
@@ -59,7 +62,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin{
                   children: [
                 
                     SizedBox(
-                      height: 200,
+                      height: height<650 ? 160: 200,
                       child: Stack(
                         children: [
                           SizedBox(
@@ -134,6 +137,10 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin{
                           index==0
                             ? const LoginForm()
                             : OtpForm(index: index),
+
+                          Visibility(
+                            visible: height>700 && width<450,
+                            child: const SizedBox(height: 40,)),
                       
                           ElevatedButton(
                             onPressed: (){
@@ -160,7 +167,9 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin{
                               _controller.forward();
                       
                             }, 
-                            child: Text(index==0 ? "LOGIN": index==1 ? "VERIFY": "DONE"))
+                            child: Text(index==0 ? "LOGIN": index==1 ? "VERIFY": "DONE", style: TextStyle(
+                              fontSize: TextResponsive.get(context, 14),
+                            ),))
                         ],
                       ),
                     ),
@@ -168,13 +177,13 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin{
                 ),
               ),
               SizedBox(
-                height: 90,
+                height: height>=800 ? MediaQuery.of(context).size.width*0.6 : MediaQuery.of(context).size.width*0.4,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     Positioned(
                       left: -2 * MediaQuery.of(context).size.width / 2.5,
-                      bottom: -2 * MediaQuery.of(context).size.width + 230,
+                      bottom: -2 * MediaQuery.of(context).size.width + (height>=800 ? 340: 240),
                       child: CircleAvatar(
                         backgroundColor: ColorsConst.secondaryLight,
                         radius: MediaQuery.of(context).size.width * 0.8,
@@ -182,7 +191,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin{
                     ),
                     Positioned(
                       right: -2 * MediaQuery.of(context).size.width / 2.5,
-                      bottom: -2 * MediaQuery.of(context).size.width + 230,
+                      bottom: -2 * MediaQuery.of(context).size.width + (height>=800 ? 340: 240),
                       child: CircleAvatar(
                         backgroundColor: ColorsConst.secondary,
                         radius: MediaQuery.of(context).size.width * 0.8,
