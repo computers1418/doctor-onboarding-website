@@ -1,0 +1,56 @@
+name: doctor_app
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+2
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+  #utils
+  page_transition: ^2.1.0
+
+  #widgets
+  pinput: ^4.0.0
+  carousel_slider: ^4.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - res/images/
+
+  fonts:
+    - family: Aloevera
+      fonts:
+        - asset: res/fonts/Aloevera-Bold.ttf
+          weight: 800
+        - asset: res/fonts/Aloevera-Regular.ttf
+          weight: 600
+        - asset: res/fonts/Aloevera-Light.ttf
+          weight: 500
+    - family: Kumbhsans
+      fonts:
+        - asset: res/fonts/KumbhSans-ExtraBold.ttf
+          weight: 900
+        - asset: res/fonts/KumbhSans-Bold.ttf
+          weight: 800
+        - asset: res/fonts/KumbhSans-Medium.ttf
+          weight: 700
+        - asset: res/fonts/KumbhSans-Regular.ttf
+          weight: 600
+        - asset: res/fonts/KumbhSans-Light.ttf
+          weight: 500
