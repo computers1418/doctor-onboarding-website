@@ -1,4 +1,6 @@
 import 'package:doctor_app/constants/colors_const.dart';
+import 'package:doctor_app/responsive/size_responsive.dart';
+import 'package:doctor_app/responsive/text_responsive.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -10,22 +12,22 @@ class Header extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          const Column( 
+           Column( 
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 4),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
                 child: CircleAvatar(
-                  radius: 26,
+                  radius: SizeResponsive.get(context, 26),
                   backgroundColor: Colors.black,
-                  child: Icon(Icons.camera_alt, color: Colors.white, size: 20,),
+                  child: Icon(Icons.camera_alt, color: Colors.white, size: SizeResponsive.get(context, 20),),
                 ),
               ),
               Text("User name", style: TextStyle(
                 fontFamily: "Kumbhsans",
-                fontSize: 14,
+                fontSize: TextResponsive.get(context, 14),
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF363636)
+                color: const Color(0xFF363636)
               ))
             ],
           ),
@@ -37,13 +39,13 @@ class Header extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.topLeft,
                       child: Text("Express Pass", style: TextStyle(
                         fontFamily: "Aloevera",
-                        fontSize: 14,
+                        fontSize: TextResponsive.get(context, 14),
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFF363636)
+                        color: const Color(0xFF363636)
                       )),
                     ),
                     Padding(
@@ -59,11 +61,11 @@ class Header extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               color: const Color(0xffF7F6FB)
                             ),
-                            child: Text(e, style: const TextStyle(
+                            child: Text(e, style: TextStyle(
                               fontFamily: "Kumbhsans",
-                              fontSize: 12,
+                              fontSize: TextResponsive.get(context, 12),
                               fontWeight: FontWeight.w900,
-                              color: Color(0xFF363636)
+                              color: const Color(0xFF363636)
                             )),
                           )
                         ).toList(),
@@ -81,9 +83,9 @@ class Header extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                             color: ColorsConst.primary
                           ),
-                          child: const Text("Skip", style: TextStyle(
+                          child: Text("Skip", style: TextStyle(
                             fontFamily: "Kumbhsans",
-                            fontSize: 12,
+                            fontSize: TextResponsive.get(context, 12),
                             fontWeight: FontWeight.w900,
                             color: Colors.white
                           )),

@@ -5,6 +5,7 @@ import 'package:doctor_app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors_const.dart';
+import '../../responsive/text_responsive.dart';
 import '../login/animations/toast.dart';
 import 'tabs/address.dart';
 import 'tabs/details_tab.dart';
@@ -34,6 +35,8 @@ class _AccountCreateViewState extends State<AccountCreateView> {
     //   statusBarColor: Colors.white.withOpacity(0.6),
     //   statusBarIconBrightness: Brightness.dark,
     // ));
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: PopScope(
@@ -81,11 +84,11 @@ class _AccountCreateViewState extends State<AccountCreateView> {
                   builder: (_, val, __) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(val==0 ? "Details": val==1? "Expertise": "Address",style: const TextStyle(
+                      child: Text(val==0 ? "Details": val==1? "Expertise": "Address",style: TextStyle(
                         fontFamily: "Aloevera",
-                        fontSize: 20,
+                        fontSize: TextResponsive.get(context, 20),
                         fontWeight: FontWeight.w500,
-                        color: Color(0xFF363636)
+                        color: const Color(0xFF363636)
                       )),
                     );
                   }

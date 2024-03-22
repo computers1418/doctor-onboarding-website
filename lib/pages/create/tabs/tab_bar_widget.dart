@@ -4,6 +4,8 @@ import 'package:doctor_app/pages/create/account_create_viewmodel.dart';
 import 'package:doctor_app/shapes/right_triangle_shape.dart';
 import 'package:flutter/material.dart';
 
+import '../../../responsive/text_responsive.dart';
+
 class TabBarWidget extends StatelessWidget {
   final AccountCreateViewModel viewModel;
   const TabBarWidget({super.key, required this.viewModel});
@@ -27,9 +29,9 @@ class TabBarWidget extends StatelessWidget {
                         color: Color(0xFF20AFA9),
                         borderRadius: BorderRadius.horizontal( left: Radius.circular(15))
                       ),
-                      child: const Text('Details', style: TextStyle(
+                      child: Text('Details', style: TextStyle(
                         fontFamily: "Kumbhsans",
-                        fontSize: 12,
+                        fontSize: TextResponsive.get(context, 12),
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       )),
@@ -50,7 +52,7 @@ class TabBarWidget extends StatelessWidget {
                       ),
                       child: Text('Expertise', style: TextStyle(
                         fontFamily: "Kumbhsans",
-                        fontSize: 12,
+                        fontSize: TextResponsive.get(context, 12),
                         fontWeight: FontWeight.w500,
                         color: value>0 ? Colors.white: const Color(0xFFA499CA),
                       )),
@@ -95,7 +97,7 @@ class TabBarWidget extends StatelessWidget {
                       ),
                       child: Text('Address', style: TextStyle(
                         fontFamily: "Kumbhsans",
-                        fontSize: 12,
+                        fontSize: TextResponsive.get(context, 12),
                         fontWeight: FontWeight.w500,
                         color: value==2 ? Colors.white: const Color(0xFFB4ABD7),
                       )),
