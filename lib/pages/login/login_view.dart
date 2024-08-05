@@ -202,6 +202,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                                   begin: 0, end: pi / 2)
                                               .animate(_controller);
                                           // index = 1;
+                                          _controller.forward();
                                         },
                                       );
                                     } else if (controller.index == 1) {
@@ -223,6 +224,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                                   begin: pi / 2, end: pi)
                                               .animate(_controller);
                                           // index = 2;
+                                          _controller.forward();
                                         },
                                       );
                                     } else {
@@ -232,8 +234,6 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                           (route) => false);
                                     }
                                   });
-
-                                  _controller.forward();
                                 },
                                 child: Text(
                                   controller.index == 0

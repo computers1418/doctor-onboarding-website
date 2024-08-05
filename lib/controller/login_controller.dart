@@ -59,8 +59,7 @@ class LoginController extends GetxController {
       }
     } catch (e) {
       // printC('error:$e');
-    } finally {
-      // creatingCity.value = false;
+      return false;
     }
     return false;
   }
