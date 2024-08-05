@@ -1,5 +1,8 @@
+import 'package:doctor_app/controller/login_controller.dart';
 import 'package:doctor_app/responsive/text_responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class ResendTimer extends StatefulWidget {
   const ResendTimer({super.key});
@@ -8,7 +11,51 @@ class ResendTimer extends StatefulWidget {
   State<ResendTimer> createState() => _ResendTimerState();
 }
 
-class _ResendTimerState extends State<ResendTimer> with TickerProviderStateMixin{
+class _ResendTimerState extends State<ResendTimer>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
+  final int _maxResendCount = 2;
+  int _resendCount = 0;
+  LoginController loginController = Get.put(LoginController());
+  FToast? fToast;
+
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast!.init(context);
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 30),
+    )..forward(); // Start the animation initially
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _restartTimer() {
+    if (_resendCount < _maxResendCount) {
+      loginController.generateOtpApi(
+        context,
+        body: {
+          "email": loginController.emailController.text,
+          "code": loginController.onboardingController.text,
+          "phone": loginController.phoneController.text
+        },
+        fToast: fToast!,
+        function: () {
+          setState(() {
+            _resendCount++;
+          });
+          _controller.reset();
+          _controller.forward();
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +63,27 @@ class _ResendTimerState extends State<ResendTimer> with TickerProviderStateMixin
 
     return Column(
       children: [
-        TweenAnimationBuilder<Duration>(
-          duration: const Duration(seconds: 30),
-          tween: Tween(begin: const Duration(seconds: 30), end: Duration.zero),
-          builder: (BuildContext context, Duration value, Widget? child) {
-            var seconds = 30 - (value.inSeconds % 60);
+        AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            var seconds = (30 - _controller.value * 30).ceil();
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: Text('${seconds<10 ? '0$seconds': seconds}',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: "Aloevera",
-                            fontSize: TextResponsive.get(context, 16),
-                            color: const Color(0xFF363636),
-                            fontWeight: FontWeight.w600
-                          ))),
+                  child: Text(
+                    '${seconds < 10 ? '0$seconds' : seconds}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "Aloevera",
+                      fontSize: TextResponsive.get(context, 16),
+                      color: const Color(0xFF363636),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
                 Container(
                   height: 10,
                   width: double.infinity,
@@ -45,7 +94,8 @@ class _ResendTimerState extends State<ResendTimer> with TickerProviderStateMixin
                   child: Row(
                     children: [
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width - 60) * (seconds / 30), // Calculate the percentage of completion
+                        width: (MediaQuery.of(context).size.width - 60) *
+                            _controller.value, // Adjust progress
                         child: Container(
                           height: 10,
                           decoration: BoxDecoration(
@@ -59,19 +109,26 @@ class _ResendTimerState extends State<ResendTimer> with TickerProviderStateMixin
                 ),
               ],
             );
-        }),
+          },
+        ),
         Padding(
-          padding: EdgeInsets.only(top: 4, bottom: height<650 ? 8: 30),
+          padding: EdgeInsets.only(top: 4, bottom: height < 650 ? 8 : 30),
           child: Align(
             alignment: Alignment.centerRight,
-            child: Text("Resend", style: TextStyle(
-              fontFamily: "Aloevera",
-              fontSize: TextResponsive.get(context, 16),
-              color: const Color(0xFF363636),
-              fontWeight: FontWeight.w500
-            ),),
+            child: GestureDetector(
+              onTap: _restartTimer,
+              child: Text(
+                "Resend",
+                style: TextStyle(
+                  fontFamily: "Aloevera",
+                  fontSize: TextResponsive.get(context, 16),
+                  color: const Color(0xFF363636),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
           ),
-        )
+        ),
       ],
     );
   }

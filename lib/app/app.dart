@@ -1,5 +1,6 @@
 import 'package:doctor_app/constants/theme_const.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../routes/app_routes.dart';
 
@@ -12,7 +13,7 @@ class App extends StatelessWidget {
   }
 
   getMaterialApp(String title, BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.login,
       onGenerateRoute: (s) => RouteGenerator(settings: s).getRoute(),
